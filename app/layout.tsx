@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { ClerkProvider } from "@clerk/nextjs";
 import { Geist, Geist_Mono } from "next/font/google";
 import type { ReactNode } from "react";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -27,12 +26,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { readonly children: ReactNode }) {
   return (
-    <ClerkProvider>
-      <html className={cn(sans.variable, mono.variable, "dark")} lang="en">
-        <body className="bg-background text-foreground">
-          <TooltipProvider>{children}</TooltipProvider>
-        </body>
-      </html>
-    </ClerkProvider>
+    <html className={cn(sans.variable, mono.variable, "dark")} lang="en">
+      <body className="bg-background text-foreground">
+        <TooltipProvider>{children}</TooltipProvider>
+      </body>
+    </html>
   );
 }

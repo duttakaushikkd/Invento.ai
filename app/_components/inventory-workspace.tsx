@@ -1,6 +1,5 @@
 "use client";
 
-import { SignInButton, UserButton } from "@clerk/nextjs";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { AgentChat } from "@/app/_components/agent-chat";
 import { Button } from "@/components/ui/button";
@@ -26,7 +25,6 @@ export function InventoryWorkspace() {
 
   const refresh = useCallback(async () => {
     const [inventoryRes, googleRes] = await Promise.all([fetch("/api/inventories"), fetch("/api/google/status")]);
-    if (inventoryRes.status === 401) return;
     const inventoryJson = (await inventoryRes.json()) as InventoryMeta[] | { error: string };
     if (Array.isArray(inventoryJson)) {
       setInventories(inventoryJson);
@@ -74,16 +72,10 @@ export function InventoryWorkspace() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <header className="flex items-center justify-between border-b px-6 py-4">
+      <header className="flex items-center border-b px-6 py-4">
         <div>
           <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Invento</p>
           <h1 className="text-xl font-semibold">Schema-agnostic inventory agent</h1>
-        </div>
-        <div className="flex items-center gap-3">
-          <UserButton />
-          <SignInButton mode="modal">
-            <Button variant="outline">Sign in</Button>
-          </SignInButton>
         </div>
       </header>
       {error ? <p className="border-b bg-destructive/10 px-6 py-2 text-sm text-destructive">{error}</p> : null}

@@ -5,7 +5,6 @@ Schema-agnostic inventory agent. Connect any Google Sheet (or use the demo wareh
 ## Stack
 
 - eve agent + Next.js web chat
-- Clerk auth
 - Neon Postgres control plane
 - Google Sheets adapter
 - Vercel AI Gateway
@@ -19,10 +18,10 @@ Schema-agnostic inventory agent. Connect any Google Sheet (or use the demo wareh
 5. `npx drizzle-kit push`
 6. `npm run dev`
 
-Open `/dashboard`. Sign in, use the demo inventory immediately, or connect Google Sheets.
+Open **http://localhost:3000**. The demo inventory is available immediately, or connect Google Sheets.
 
 ## Surfaces
 
-- Web: `/dashboard` table + agent
+- Web: `/` table + agent
 - REST: `/api/inventories`, `/api/mutations/preview`, `/api/mutations/:id/commit`
 - MCP JSON-RPC: `POST /api/mcp`

@@ -7,7 +7,6 @@ export async function jsonHandler(fn: (tenant: Awaited<ReturnType<typeof require
     return NextResponse.json(await fn(tenant));
   } catch (error) {
     const message = error instanceof Error ? error.message : "Request failed";
-    const status = message === "UNAUTHENTICATED" ? 401 : 400;
-    return NextResponse.json({ error: message }, { status });
+    return NextResponse.json({ error: message }, { status: 400 });
   }
 }
